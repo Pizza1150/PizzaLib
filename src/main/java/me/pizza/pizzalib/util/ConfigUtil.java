@@ -6,6 +6,7 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,6 +18,8 @@ import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 public class ConfigUtil {
 
     public static ItemStack buildItem(ConfigurationSection section) {
+        Objects.requireNonNull(section, "ConfigurationSection cannot be null");
+
         ItemStack item;
 
         try {
@@ -61,6 +64,8 @@ public class ConfigUtil {
     }
 
     public static Sound buildSound(ConfigurationSection section) {
+        Objects.requireNonNull(section, "ConfigurationSection cannot be null");
+
         return Sound.sound(
                 Key.key(section.getString("sound", "")),
                 Sound.Source.MASTER,
