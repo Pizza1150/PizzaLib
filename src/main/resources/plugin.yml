@@ -1,0 +1,5 @@
+name: PizzaLib
+version: '1.0'
+main: me.pizza.pizzalib.PizzaLib
+api-version: '1.21'
+authors: [ Pizza ]
