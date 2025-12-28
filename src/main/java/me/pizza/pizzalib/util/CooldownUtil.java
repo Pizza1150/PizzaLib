@@ -1,31 +1,32 @@
 package me.pizza.pizzalib.util;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.entity.Player;
 
 public class CooldownUtil {
 
-    private static final Map<String, Long> COOLDOWNS = new HashMap<>();
+    private static final Map<String, Long> COOLDOWNS = new ConcurrentHashMap<>();
 
     public static void applyCooldown(Player player, String identifier, long durationSeconds) {
+        String key = player.getUniqueId() + ":" + identifier;
         long expireAt = System.currentTimeMillis() + (durationSeconds * 1000);
-        COOLDOWNS.put(buildKey(player, identifier), expireAt);
+        COOLDOWNS.put(key, expireAt);
     }
 
     public static void removeCooldown(Player player, String identifier) {
-        COOLDOWNS.remove(buildKey(player, identifier));
+        String key = player.getUniqueId() + ":" + identifier;
+        COOLDOWNS.remove(key);
     }
 
     public static boolean isOnCooldown(Player player, String identifier) {
-        String key = buildKey(player, identifier);
+        String key = player.getUniqueId() + ":" + identifier;
 
         Long expireAt = COOLDOWNS.get(key);
 
-        if (expireAt == null) {
+        if (expireAt == null)
             return false;
-        }
 
         if (System.currentTimeMillis() > expireAt) {
             COOLDOWNS.remove(key);
@@ -36,20 +37,20 @@ public class CooldownUtil {
     }
 
     public static long getRemaining(Player player, String identifier) {
-        String key = buildKey(player, identifier);
+        String key = player.getUniqueId() + ":" + identifier;
 
         Long expireAt = COOLDOWNS.get(key);
 
-        if (expireAt == null) {
+        if (expireAt == null)
             return 0;
-        }
 
-        if (System.currentTimeMillis() > expireAt) {
+        long now = System.currentTimeMillis();
+        if (now > expireAt) {
             COOLDOWNS.remove(key);
             return 0;
         }
 
-        return expireAt - System.currentTimeMillis();
+        return expireAt - now;
     }
 
     public static String getFormatted(Player player, String identifier) {
@@ -62,9 +63,5 @@ public class CooldownUtil {
         seconds = seconds % 60;
 
         return String.format("%02d:%02d", minutes, seconds);
-    }
-
-    private static String buildKey(Player player, String identifier) {
-        return player.getUniqueId().toString() + ":" + identifier;
     }
 }
