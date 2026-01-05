@@ -2,7 +2,6 @@ package me.pizza.pizzalib.util;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.ResolvableProfile;
-import me.pizza.pizzalib.PizzaLib;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,9 +14,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+@SuppressWarnings("UnstableApiUsage")
 public class HeadUtil implements Listener {
 
-    private static final NamespacedKey KEY = new NamespacedKey(PizzaLib.plugin, "head");
+    private static final NamespacedKey KEY = new NamespacedKey("pizzalib", "head");
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
