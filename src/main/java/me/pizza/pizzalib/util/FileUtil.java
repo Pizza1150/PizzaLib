@@ -3,12 +3,13 @@ package me.pizza.pizzalib.util;
 import java.io.File;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FileUtil {
 
     @Nullable
-    public static File copyDefaultFile(Plugin plugin, String path) {
+    public static File copyDefaultFile(@NotNull Plugin plugin, String path) {
         File file = new File(plugin.getDataFolder(), path);
 
         File parent = file.getParentFile();
@@ -23,7 +24,7 @@ public class FileUtil {
         return file;
     }
 
-    public static File[] listFiles(Plugin plugin, String path) {
+    public static File[] listFiles(@NotNull Plugin plugin, String path) {
         File folder = new File(plugin.getDataFolder(), path);
         if (!folder.exists() || !folder.isDirectory())
             return new File[0];

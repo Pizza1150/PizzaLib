@@ -49,6 +49,11 @@ public class ConfigUtil {
 
             itemMeta.setCustomModelDataComponent(customModelDataComponent);
 
+            // Item model
+            String itemModel = section.getString("item-model", "");
+            if (!itemModel.isEmpty())
+                itemMeta.setItemModel(NamespacedKey.fromString(itemModel));
+
             // Tooltip style
             String tooltipStyle = section.getString("tooltip-style", "");
             if (!tooltipStyle.isEmpty())

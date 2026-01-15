@@ -19,6 +19,7 @@ public class MessageUtil {
         return (message == null) ? null : MINI_MESSAGE.deserialize("<!i>" + message, tagResolvers);
     }
 
+    @NotNull
     public static String toString(@NotNull Component component) {
         return MINI_MESSAGE.serialize(component);
     }
