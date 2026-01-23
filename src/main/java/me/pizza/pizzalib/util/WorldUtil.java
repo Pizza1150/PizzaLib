@@ -35,12 +35,12 @@ public class WorldUtil {
                     throw new IllegalStateException("Source world folder not found");
 
                 for (File file : Objects.requireNonNull(sourceDir.listFiles())) {
-                    String name = file.getName();
+                    String fileName = file.getName();
 
                     if (file.isDirectory()) {
-                        FileUtils.copyDirectory(file, new File(targetDir, name));
-                    } else if (!name.contains("session") && !name.contains("uid.dat")) {
-                        FileUtils.copyFile(file, new File(targetDir, name));
+                        FileUtils.copyDirectory(file, new File(targetDir, fileName));
+                    } else if (!fileName.contains("session") && !fileName.contains("uid.dat")) {
+                        FileUtils.copyFile(file, new File(targetDir, fileName));
                     }
                 }
 
