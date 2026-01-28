@@ -8,6 +8,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class FileUtil {
 
+    private FileUtil() {
+    }
+
     @Nullable
     public static File copyDefaultFile(@NotNull Plugin plugin, String path) {
         File file = new File(plugin.getDataFolder(), path);

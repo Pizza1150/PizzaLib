@@ -7,6 +7,9 @@ import org.bukkit.entity.Player;
 
 public class CooldownUtil {
 
+    private CooldownUtil() {
+    }
+
     private static final Map<String, Long> COOLDOWNS = new ConcurrentHashMap<>();
 
     public static void applyCooldown(Player player, String identifier, long durationSeconds) {

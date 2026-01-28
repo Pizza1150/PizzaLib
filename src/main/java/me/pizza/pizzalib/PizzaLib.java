@@ -1,6 +1,7 @@
 package me.pizza.pizzalib;
 
 import me.pizza.pizzalib.util.HeadUtil;
+import me.pizza.pizzalib.util.WorldUtil;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,5 +19,6 @@ public final class PizzaLib extends JavaPlugin {
     @Override
     public void onDisable() {
         HeadUtil.saveAll();
+        WorldUtil.shutdown();
     }
 }

@@ -9,6 +9,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class MessageUtil {
 
+    private MessageUtil() {
+    }
+
     public static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
     public static Component getRichMessage(@Nullable String message) {

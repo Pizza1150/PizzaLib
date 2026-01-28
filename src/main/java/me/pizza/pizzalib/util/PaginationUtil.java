@@ -4,6 +4,9 @@ import java.util.List;
 
 public class PaginationUtil {
 
+    private PaginationUtil() {
+    }
+
     public static int getMaxPage(int size, int perPage) {
         if (size <= 0) return 0;
         return (size - 1) / perPage;

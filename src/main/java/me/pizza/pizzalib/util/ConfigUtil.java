@@ -17,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("UnstableApiUsage")
 public class ConfigUtil {
 
+    private ConfigUtil() {
+    }
+
     public static ItemStack buildItem(@NotNull ConfigurationSection section) {
         ItemStack item;
 
